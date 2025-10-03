@@ -1,54 +1,124 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestion de la Classe 2A</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Boîte à idées - Classe 2A</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Barre de navigation -->
-  <header>
-    <h1>📘 Gestion de la Classe 2A</h1>
-    <nav>
-      <button id="menu-classe">Classe</button>
-      <button id="menu-comptes">Comptes</button>
-      <button id="logout">Déconnexion</button>
-    </nav>
+  <header class="topbar">
+    <div class="brand">📘 Boîte à idées — Classe 2A</div>
+    <div class="top-actions" id="top-actions" style="display:none;">
+      <button id="nav-classe">Classe</button>
+      <button id="nav-gestion" style="display:none;">Gestion comptes</button>
+      <button id="logout-btn">Se déconnecter</button>
+    </div>
   </header>
 
-  <!-- Section de connexion -->
-  <section id="login-section">
-    <div class="card">
-      <h2>Connexion</h2>
-      <input type="text" id="username" placeholder="Identifiant">
-      <input type="password" id="password" placeholder="Mot de passe">
-      <button id="login-btn">Se connecter</button>
-      <p id="login-error" class="error"></p>
-    </div>
-  </section>
+  <main class="wrap">
+    <!-- Auth -->
+    <section id="auth-card" class="card">
+      <h2>Se connecter</h2>
+      <div class="form-row">
+        <label>Identifiant (ex: b.paul-alexandre)</label>
+        <input id="login-id" autocomplete="username">
+      </div>
+      <div class="form-row">
+        <label>Mot de passe</label>
+        <input id="login-pass" type="password" autocomplete="current-password">
+      </div>
+      <div class="form-row">
+        <button id="btn-login">Se connecter</button>
+      </div>
+      <p id="login-msg" class="msg"></p>
 
-  <!-- Section classe -->
-  <section id="classe-section" class="hidden">
-    <h2>👩‍🏫 Gestion de la classe</h2>
-    <p>Bienvenue dans l’espace de gestion de la classe. Ici tu pourras voir les infos générales.</p>
-  </section>
+      <hr>
 
-  <!-- Section comptes -->
-  <section id="comptes-section" class="hidden">
-    <h2>👤 Gestion des comptes</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nom</th>
-          <th>Problème particulier</th>
-        </tr>
-      </thead>
-      <tbody id="comptes-table"></tbody>
-    </table>
-  </section>
+      <h3>Créer un compte</h3>
+      <p class="small">Ton identifiant = première lettre du NOM + "." + prénom (ex : BOULIVAN Paul → <strong>b.paul</strong> ou pour Paul-Alexandre → <strong>b.paul-alexandre</strong>). Le compte doit exister dans la liste fournie par le prof.</p>
+      <div class="form-row">
+        <label>Nom (exact)</label>
+        <input id="register-nom" placeholder="Ex: BOULIVAN">
+      </div>
+      <div class="form-row">
+        <label>Prénom (exact)</label>
+        <input id="register-prenom" placeholder="Ex: Paul-Alexandre">
+      </div>
+      <div class="form-row">
+        <label>Choisir un mot de passe</label>
+        <input id="register-pass" type="password">
+      </div>
+      <div class="form-row">
+        <label>Confirmer mot de passe</label>
+        <input id="register-pass2" type="password">
+      </div>
+      <div class="form-row">
+        <button id="btn-register">Créer le compte</button>
+      </div>
+      <p id="register-msg" class="msg"></p>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- Espace utilisateur -->
+    <section id="user-area" style="display:none; width:100%;">
+      <!-- User panel -->
+      <div id="user-panel" class="card" style="max-width:900px; margin:20px auto;">
+        <div class="flex-between">
+          <h2 id="welcome"></h2>
+          <div id="delegate-badge" class="badge" style="display:none;">Délégué</div>
+        </div>
+        <p id="user-instructions" class="small">Remplis au moins un champ et clique sur <strong>Enregistrer</strong>. Tes réponses sont visibles par les délégués et le super-admin.</p>
+
+        <div class="grid-3">
+          <div>
+            <label>Ton idée</label>
+            <textarea id="idea" placeholder="Proposition, projet, activité..."></textarea>
+          </div>
+          <div>
+            <label>Problème particulier</label>
+            <textarea id="problem" placeholder="Problème spécifique (santé, matériel, autre)..."></textarea>
+          </div>
+          <div>
+            <label>Plainte / remarque</label>
+            <textarea id="complaint" placeholder="Remarque ou plainte (anonyme possible)"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <button id="btn-save">Enregistrer</button>
+          <span id="save-msg" class="msg" style="margin-left:12px;"></span>
+        </div>
+      </div>
+
+      <!-- Classe (visible si délégué ou super-admin) -->
+      <div id="classe-panel" class="card" style="display:none; max-width:1000px; margin:20px auto;">
+        <h3>Panel — Toutes les réponses</h3>
+        <div class="panel-grid">
+          <div class="panel-col">
+            <h4>Idées</h4>
+            <div id="allIdeas" class="panel-list"></div>
+          </div>
+          <div class="panel-col">
+            <h4>Problèmes particuliers</h4>
+            <div id="allProblems" class="panel-list"></div>
+          </div>
+          <div class="panel-col">
+            <h4>Plaintes / remarques</h4>
+            <div id="allComplaints" class="panel-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gestion comptes (super-admin only) -->
+      <div id="gestion-panel" class="card" style="display:none; max-width:900px; margin:20px auto;">
+        <h3>Gestion des comptes</h3>
+        <p class="small">Réinitialiser le mot de passe d'un élève (le mot de passe temporaire s'affiche après réinitialisation).</p>
+        <div id="users-list" class="users-list"></div>
+      </div>
+    </section>
+
+  </main>
+
+<script src="script.js"></script>
 </body>
 </html>

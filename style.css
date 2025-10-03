@@ -1,109 +1,49 @@
-/* Styles généraux */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f4f7fa;
-  color: #333;
+:root{
+  --bg:#eef6fb;
+  --card:#ffffff;
+  --accent:#2f8fd6;
+  --accent-2:#27ae60;
+  --muted:#6b7280;
 }
 
-header {
-  background: #2c3e50;
-  color: white;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:Inter,Arial,Helvetica,sans-serif; background:var(--bg); color:#222;
 }
-
-header h1 {
-  margin: 0;
-  font-size: 20px;
+.topbar{
+  background:var(--accent); color:white; padding:12px 20px; display:flex; align-items:center; justify-content:space-between;
 }
+.topbar .brand{font-weight:700}
+.topbar button{background:rgba(255,255,255,0.12); border:0; color:white; padding:8px 12px; border-radius:8px; cursor:pointer; margin-left:8px}
+.wrap{padding:18px; max-width:1200px; width:100%}
 
-nav button {
-  background: #3498db;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  margin-left: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s;
+.card{background:var(--card); border-radius:12px; padding:18px; box-shadow:0 6px 18px rgba(20,30,50,0.06); margin:16px auto}
+.form-row{margin:10px 0}
+.form-row label{display:block; font-size:13px; color:var(--muted); margin-bottom:6px}
+input[type="text"], input[type="password"], textarea{
+  width:100%; padding:10px 12px; border-radius:8px; border:1px solid #d6e6f6; font-size:14px; background:#fbfdff;
 }
+textarea{min-height:90px; resize:vertical}
+button{background:var(--accent-2); color:white; border:0; padding:10px 14px; border-radius:8px; cursor:pointer}
+button:hover{opacity:0.95}
+.msg{color:#b91c1c; font-size:13px}
 
-nav button:hover {
-  background: #2980b9;
-}
+.small{font-size:13px; color:var(--muted)}
+.badge{background:#fde68a; color:#92400e; padding:6px 10px; border-radius:999px; font-weight:600}
 
-section {
-  padding: 20px;
-}
-
-.hidden {
-  display: none;
-}
-
-/* Carte de connexion */
-.card {
-  max-width: 300px;
-  margin: 50px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.card input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.card button {
-  width: 100%;
-  padding: 10px;
-  background: #27ae60;
-  border: none;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.card button:hover {
-  background: #219150;
-}
-
-.error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-/* Tableau comptes */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-}
-
-th {
-  background: #3498db;
-  color: white;
-}
-
-tr:hover {
-  background: #f1f1f1;
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px}
+.flex-between{display:flex; align-items:center; justify-content:space-between}
+.panel-grid{display:flex; gap:12px}
+.panel-col{flex:1}
+.panel-list{background:#fbfdff; padding:10px; border-radius:8px; max-height:300px; overflow:auto; border:1px solid #eef6fb}
+.panel-item{padding:8px;border-radius:6px;background:#fff;margin-bottom:8px;border:1px solid #f1f5f9}
+.panel-item .meta{font-size:12px;color:var(--muted); margin-bottom:6px}
+.users-list{display:flex;flex-direction:column;gap:8px}
+.user-row{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:8px;background:#fbfdff;border:1px solid #eef6fb}
+.user-row .info{display:flex;flex-direction:column}
+.user-row .id{font-weight:700}
+.user-row button{background:var(--accent);padding:8px 10px;border-radius:8px}
+@media(max-width:900px){
+  .grid-3{grid-template-columns:1fr}
+  .panel-grid{flex-direction:column}
 }
