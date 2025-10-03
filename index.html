@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Boîte à idées - Classe</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Authentification -->
+<div id="auth-section" class="card">
+  <h2>Connexion / Création de compte</h2>
+  <div class="form-group">
+    <label>Identifiant</label>
+    <input type="text" id="login-id" placeholder="Ex: a.abbygail">
+    <label>Mot de passe</label>
+    <input type="password" id="login-pass">
+    <button onclick="login()">Se connecter</button>
+    <div id="login-msg" class="msg"></div>
+  </div>
+  <hr>
+  <div class="form-group">
+    <label>Nom</label>
+    <input type="text" id="register-nom">
+    <label>Prénom</label>
+    <input type="text" id="register-prenom">
+    <label>Mot de passe</label>
+    <input type="password" id="register-pass">
+    <label>Confirmer mot de passe</label>
+    <input type="password" id="register-pass2">
+    <button onclick="register()">Créer un compte</button>
+    <div id="register-msg" class="msg"></div>
+  </div>
+</div>
+
+<!-- Section utilisateur / admin -->
+<div id="user-section" class="container" style="display:none;">
+  <!-- Menu latéral -->
+  <div class="sidebar" id="menu" style="display:none;">
+    <h3>Menu</h3>
+    <button onclick="showPanel('classe-panel')">Classe</button>
+    <button onclick="showPanel('gestion-panel')">Gestion des comptes</button>
+    <button onclick="logout()" class="logout-btn">Se déconnecter</button>
+  </div>
+
+  <!-- Vue principale -->
+  <div class="main-content">
+    <!-- Vue élève -->
+    <div id="user-panel" class="card" style="display:none;">
+      <h2 id="welcome"></h2>
+      <p>Bienvenue dans la boîte à idées ! Remplis les champs ci-dessous et clique sur "Enregistrer".</p>
+      <div class="form-group">
+        <label>Ton idée</label>
+        <textarea id="idea"></textarea>
+        <label>Problème particulier</label>
+        <textarea id="problem"></textarea>
+        <label>Plainte / remarque</label>
+        <textarea id="complaint"></textarea>
+        <button onclick="saveFeedback()">Enregistrer</button>
+        <div id="save-msg" class="msg"></div>
+      </div>
+    </div>
+
+    <!-- Vue Classe -->
+    <div id="classe-panel" class="card" style="display:none;">
+      <h3>Panel Classe</h3>
+      <h4>Idées</h4>
+      <div id="allIdeas" class="all-feedbacks"></div>
+      <h4>Problèmes particuliers</h4>
+      <div id="allProblems" class="all-feedbacks"></div>
+      <h4>Plaintes / remarques</h4>
+      <div id="allComplaints" class="all-feedbacks"></div>
+    </div>
+
+    <!-- Gestion comptes -->
+    <div id="gestion-panel" class="card" style="display:none;">
+      <h3>Gestion des comptes</h3>
+      <div id="users-list"></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

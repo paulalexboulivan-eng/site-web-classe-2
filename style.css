@@ -1,0 +1,43 @@
+body{
+  font-family: Arial, sans-serif;
+  background: #eef2f7;
+  margin:0; padding:0;
+  display:flex; flex-direction:column; align-items:center;
+}
+
+.container{
+  display:flex; width:100%; max-width:1200px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin:20px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+h2,h3,h4{text-align:center;}
+.form-group{ display:flex; flex-direction:column; gap:10px; }
+input,textarea{ padding:10px; border-radius:5px; border:1px solid #ccc; width:100%; box-sizing:border-box; }
+textarea{ resize: vertical; min-height:50px; }
+
+button{ padding:10px; background:#3498db; color:white; border:none; border-radius:5px; cursor:pointer; }
+button:hover{ background:#2980b9; }
+
+.msg{ color:red; font-size:0.9em; }
+.all-feedbacks{ max-height:250px; overflow-y:auto; background:#f9f9f9; padding:10px; margin-bottom:10px; border-radius:5px; }
+.user-row{ display:flex; justify-content:space-between; margin-bottom:5px; padding:5px; background:#f9f9f9; border-radius:5px; align-items:center; }
+.small-muted{ font-size:0.8em; color:#555; }
+
+.sidebar{
+  width:200px; background:#2c3e50; padding:20px; color:white; display:flex; flex-direction:column; gap:10px; border-radius:10px;
+}
+.sidebar h3{ text-align:center; margin-bottom:20px; }
+.sidebar button{ background:#3498db; color:white; padding:10px; border:none; border-radius:5px; cursor:pointer; }
+.sidebar button:hover{ background:#2980b9; }
+
+.main-content{ flex:1; padding:20px; }
+
+.logout-btn{ background:#e74c3c; margin-top:10px; }
+.logout-btn:hover{ background:#c0392b; }
